@@ -1,26 +1,3 @@
-variable "tags" {
-  type        = map(string)
-  description = "A map of the tags to use on the resources that are deployed with this module."
-  default = {
-    source = "terraform"
-  }
-}
-
-variable "rg_name" {
-  description = "Resource group name"
-  type        = string
-}
-
-variable "location" {
-  description = "Azure location."
-  type        = string
-}
-
-variable "app_service_plan_name" {
-  description = "The name for the App service plan"
-  type        = string
-}
-
 variable "add_to_app_service_environment" {
   description = "Whether or not this app service plan should be added to an app service environment"
   type        = bool
@@ -31,6 +8,21 @@ variable "app_service_environment_id" {
   description = "If an ASE is used, supply the ID to it here"
   type        = string
   default     = ""
+}
+
+variable "app_service_plan_name" {
+  description = "The name for the App service plan"
+  type        = string
+}
+
+variable "kind" {
+  description = "The kind of the App Service Plan to create. See documentation https://www.terraform.io/docs/providers/azurerm/r/app_service_plan.html#kind"
+  type        = string
+}
+
+variable "location" {
+  description = "Azure location."
+  type        = string
 }
 
 variable "maximum_elastic_worker_count" {
@@ -45,10 +37,15 @@ variable "per_site_scaling" {
   default     = false
 }
 
-variable "zone_redundant" {
-  description = "Should the ASP be zone redundant?"
-  type        = bool
-  default     = false
+variable "reserved" {
+  description = "Flag indicating if App Service Plan should be reserved. Forced to true if \"kind\" is \"Linux\"."
+  type        = string
+  default     = "false"
+}
+
+variable "rg_name" {
+  description = "Resource group name"
+  type        = string
 }
 
 variable "sku" {
@@ -56,13 +53,16 @@ variable "sku" {
   type        = map(string)
 }
 
-variable "kind" {
-  description = "The kind of the App Service Plan to create. See documentation https://www.terraform.io/docs/providers/azurerm/r/app_service_plan.html#kind"
-  type        = string
+variable "tags" {
+  type        = map(string)
+  description = "A map of the tags to use on the resources that are deployed with this module."
+  default = {
+    source = "terraform"
+  }
 }
 
-variable "reserved" {
-  description = "Flag indicating if App Service Plan should be reserved. Forced to true if \"kind\" is \"Linux\"."
-  type        = string
-  default     = "false"
+variable "zone_redundant" {
+  description = "Should the ASP be zone redundant?"
+  type        = bool
+  default     = false
 }
