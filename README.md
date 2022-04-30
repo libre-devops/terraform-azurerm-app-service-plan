@@ -1,3 +1,7 @@
+# Info
+
+This module is feature frozen as it uses app_service_plan, please use [Service Plan](https://registry.terraform.io/modules/libre-devops/service-plan/azurerm/latest)
+
 ```hcl
 module "asp" {
   source = "registry.terraform.io/libre-devops/app-service-plan/azurerm"
