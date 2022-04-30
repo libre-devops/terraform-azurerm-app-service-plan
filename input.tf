@@ -35,8 +35,8 @@ variable "app_service_environment_id" {
 
 variable "maximum_elastic_worker_count" {
   description = "If ElasticScaleEnabled app service plan is used, the max number of nodes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "per_site_scaling" {
