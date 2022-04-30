@@ -6,11 +6,11 @@ module "asp" {
   location = module.rg.rg_location
   tags     = module.rg.rg_tags
 
-  app_service_plan_name = "asp-${var.short}-${var.loc}-${terraform.workspace}-01"
+  app_service_plan_name = "plan-${var.short}-${var.loc}-${terraform.workspace}-01"
 
   kind    = "FunctionApp"
   sku     = {
-    tier  = "Consumption"
+    tier  = "Dynamic"
     size  = "Y1"
   }
 }
