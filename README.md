@@ -6,7 +6,8 @@ module "asp" {
   location = module.rg.rg_location
   tags     = module.rg.rg_tags
 
-  app_service_plan_name = "plan-${var.short}-${var.loc}-${terraform.workspace}-01"
+  app_service_plan_name          = "plan-${var.short}-${var.loc}-${terraform.workspace}-01"
+  add_to_app_service_environment = false
 
   kind    = "FunctionApp"
   sku     = {
