@@ -3,7 +3,7 @@
 This module is feature frozen as it uses app_service_plan, please use [Service Plan](https://registry.terraform.io/modules/libre-devops/service-plan/azurerm/latest)
 
 ```hcl
-module "asp" {
+module "asp_old" {
   source = "registry.terraform.io/libre-devops/app-service-plan/azurerm"
 
   rg_name  = module.rg.rg_name
@@ -13,10 +13,10 @@ module "asp" {
   app_service_plan_name          = "plan-${var.short}-${var.loc}-${terraform.workspace}-01"
   add_to_app_service_environment = false
 
-  kind    = "FunctionApp"
-  sku     = {
-    tier  = "Dynamic"
-    size  = "Y1"
+  kind = "Linux"
+  sku = {
+    tier = "Dynamic"
+    size = "Y1"
   }
 }
 ```
