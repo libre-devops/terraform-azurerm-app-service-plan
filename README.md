@@ -3,6 +3,16 @@
 This module is feature frozen as it uses app_service_plan, please use [Service Plan](https://registry.terraform.io/modules/libre-devops/service-plan/azurerm/latest)
 
 ```hcl
+module "rg" {
+  source = "registry.terraform.io/libre-devops/rg/azurerm"
+
+  rg_name  = "rg-${var.short}-${var.loc}-${terraform.workspace}-build" // rg-ldo-euw-dev-build
+  location = local.location                                            // compares var.loc with the var.regions var to match a long-hand name, in this case, "euw", so "westeurope"
+  tags     = local.tags
+
+  #  lock_level = "CanNotDelete" // Do not set this value to skip lock
+}
+
 module "asp_old" {
   source = "registry.terraform.io/libre-devops/app-service-plan/azurerm"
 
@@ -14,7 +24,7 @@ module "asp_old" {
   add_to_app_service_environment = false
 
   kind = "Linux"
-  sku = {
+  sku  = {
     tier = "Dynamic"
     size = "Y1"
   }
